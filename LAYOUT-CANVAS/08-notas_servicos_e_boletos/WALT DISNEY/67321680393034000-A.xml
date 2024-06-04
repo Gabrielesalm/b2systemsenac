@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><RetornoConsulta xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.prefeitura.sp.gov.br/nfe"><Cabecalho Versao="1" xmlns=""><Sucesso>true</Sucesso></Cabecalho><NFe xmlns=""><Assinatura>CFpE/vrV4SS9737XrQWs8xKycPb0MSQXBIK6YTRPkTZie+tbuIClNiMlC8aqXobLwWn+caIghodtWpnbygbGJGzh5fg5+AkjGxvtRR/mT9filFwUt6w/Z4gF5t1NE3lCtLDN+GFFxZ/a/ANEJctfCiA9mOwLS1WQulCexJKull0DtAMePzFpMuq6CYgnvK3ZxGRsloEtwi3lizEApTk7gNxELjbFbHFdUk7pKTQJbxhfSf9HAz/7u3YUskKjFOfxHqiZN7dc6yIhb5jaNDWV8657qOmZ2EMXdOpYOE6+uRWg0TRYuajgWmxtDMTNfr0+AuD1FNAl9bSkcLDtYMSF5A==</Assinatura><ChaveNFe><InscricaoPrestador>22129014</InscricaoPrestador><NumeroNFe>35063864</NumeroNFe><CodigoVerificacao>CZGS7DN1</CodigoVerificacao></ChaveNFe><DataEmissaoNFe>2023-04-01T20:51:36</DataEmissaoNFe><NumeroLote>1030162043</NumeroLote><ChaveRPS><InscricaoPrestador>22129014</InscricaoPrestador><SerieRPS>A</SerieRPS><NumeroRPS>32777342</NumeroRPS></ChaveRPS><TipoRPS>RPS</TipoRPS><DataEmissaoRPS>2023-04-01</DataEmissaoRPS><DataFatoGeradorNFe>2023-04-01T00:00:00</DataFatoGeradorNFe><CPFCNPJPrestador><CNPJ>73042962000187</CNPJ></CPFCNPJPrestador><RazaoSocialPrestador>THE WALT DISNEY COMPANY (BRASIL) LTDA</RazaoSocialPrestador><EnderecoPrestador><TipoLogradouro>AV</TipoLogradouro><Logradouro>DAS NACOES UNIDAS 12551/12559</Logradouro><NumeroEndereco>12551</NumeroEndereco><ComplementoEndereco>12.555 E 12.559     AN</ComplementoEndereco><Bairro>BROOKLIN PAULISTA</Bairro><Cidade>3550308</Cidade><UF>SP</UF><CEP>4578903</CEP></EnderecoPrestador><StatusNFe>N</StatusNFe><TributacaoNFe>T</TributacaoNFe><OpcaoSimples>0</OpcaoSimples><ValorServicos>55.9</ValorServicos><CodigoServico>2963</CodigoServico><AliquotaServicos>0.029</AliquotaServicos><ValorISS>1.62</ValorISS><ValorCredito>0</ValorCredito><ISSRetido>false</ISSRetido><CPFCNPJTomador><CPF>06102314999</CPF></CPFCNPJTomador><RazaoSocialTomador>GELVAZIO CAMARGO</RazaoSocialTomador><EnderecoTomador><Cidade>4214805</Cidade><UF>SC</UF></EnderecoTomador><Discriminacao>TWDC - (Disponibilização, sem cessão definitiva, de conteúdos de áudio, vídeo, imagem e texto por meio da internet).
+
+
+
+Total aproximado dos tributos:
+
+ISS 2.90%: R$ 1.62
+
+PIS 1.65%: R$ 0.92
+
+COFINS 7.60%: R$ 4.25
+
+Fonte: IBPT-Instituto Brasileiro de Planejamento Tributário.</Discriminacao><FonteCargaTributaria /></NFe></RetornoConsulta>
