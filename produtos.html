@@ -21,7 +21,7 @@
 
 <script src="js/login.js" defer async></script>
 
-<body onload="validaSessao('produtos.html'), listarProdutosConsulta()">
+<body onload="validaSessao('produtos.html'), executaConsulta()">
     <div class="box-load">
         <div class="pre"></div>
         <div class="mensagem-loading">Carregando página, aguarde....</div>
@@ -64,7 +64,8 @@
                                     <div class="acoes-filtro">
                                         <select name="filtroConsulta" id="filtroConsulta"
                                             onChange="atualizaTipoConsulta()">
-                                            <option value="codigoConsulta" id="codigoConsulta" data-tipo="numerico" selected>
+                                            <option value="codigoConsulta" id="codigoConsulta" data-tipo="numerico"
+                                                selected>
                                                 Código
                                             </option>
                                             <option value="descricaoConsulta" id="descricaoConsulta" data-tipo="texto">
@@ -88,8 +89,7 @@
                                     <input type="text" id="campoValor1" value="1">
                                     <input type="text" id="campoValor2" style="display: none;">
 
-                                    <button class="btn btn-consulta"
-                                        onclick="executaConsulta()">Consultar</button>
+                                    <button class="btn btn-consulta" onclick="executaConsulta()">Consultar</button>
                                 </div>
 
                                 <div class="acoes-consulta">

@@ -188,39 +188,6 @@ function alterarProduto(codigo) {
     });
 }
 
-function executaConsulta1() {
-    // Listando todos os produtos
-    const method = "POST";
-    let valor1 = document.querySelector("#campoValor1").value;
-
-    const campoValor = document.querySelector("#filtroConsulta").value;
-    const campoConsulta = document.querySelector("#" + campoValor);
-    const tipoCampoConsulta = campoConsulta.getAttribute("data-tipo");
-
-    console.log("campo: " + campoValor);
-    console.log("tipoCampoConsulta: " + tipoCampoConsulta);
-    console.log("valor1: " + valor1);
-
-    // FIXO, MUDAR CAMPO DINAMICO, DEPOIS
-    let body = {
-        campo: campoValor,
-        operador: "=",
-        valor1: valor1,
-    };
-
-    const rota = "consultaproduto";
-    callApiPost(
-        method,
-        rota,
-        function (data) {
-            console.log("Dados da API:");
-            console.log(data);
-            carregaTabelaConsultaProduto(data);
-        },
-        body
-    );
-}
-
 function executaConsulta(rota = "consultaproduto") {
     // Listando todos os produtos
     const method = "POST";
@@ -239,8 +206,8 @@ function executaConsulta(rota = "consultaproduto") {
     console.log("valor2: " + valor2);
 
     if (tipoCampoConsulta == "numerico") {
-        valor1 = onlyNumbers(valor1);
-        valor2 = onlyNumbers(valor2);
+        // valor1 = onlyNumbers(valor1);
+        // valor2 = onlyNumbers(valor2);
     }
 
     let body = {
@@ -268,9 +235,14 @@ function parseOperador(operador) {
     if (operador === "igual") {
         return "=";
     }
-
     if (operador === "contem") {
         return "ilike";
+    }
+    if (operador === "contido") {
+        return "in";
+    }
+    if (operador === "naocontido") {
+        return "not in";
     }
 
     return "todos";
