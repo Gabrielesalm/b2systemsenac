@@ -44,10 +44,10 @@ function carregaTabelaConsultaProduto(aListaProdutos) {
 function getAcoes(codigo) {
     return (
         `<div class="acoes">
-                <button  class="btn btn-consulta" onclick="alterarProduto(` +
+                <button class="btn btn-warning" onclick="alterarProduto(` +
         codigo +
         `)">Alterar</button>
-                <button  class="btn btn-consulta" onclick="excluirProduto(` +
+                <button  class="btn btn-danger" onclick="excluirProduto(` +
         codigo +
         `)">Excluir</button>
             </div>
@@ -65,54 +65,31 @@ function incluirProduto() {
     const modal = document.querySelector("dialog");
     modal.showModal();
     modal.style.display = "block";
-    proximoId(function (codigo) {
-        document.querySelector("#codigo").value = codigo;
-    });
-}
-
-function proximoId(fn = false) {
-    // REGRA DE NEGOCIOS
-    // PROXIMO ID = TOTAL DE PRODUTOS + 1
-
-    let totalProdutos = 0;
-    // buscar na API TODOS OS PRODUTO E CONTAR
-
-    const method = "GET";
-    const rota = "produtos";
-    callApi(method, rota, function (data) {
-        totalProdutos = data.length;
-
-        totalProdutos = parseInt(totalProdutos + 1);
-        if (fn) {
-            fn(totalProdutos);
-        }
-    });
 }
 
 function confirmarModal() {
     const acao = document.querySelector("#ACAO").value;
 
     if (acao == ACAO_INCLUSAO) {
-        const codigo = document.querySelector("#codigo").value;
         const descricao = document.querySelector("#descricao").value;
         const preco = document.querySelector("#preco").value;
         const estoque = document.querySelector("#estoque").value;
 
-        let body = {
-            id: codigo,
-            descricao: descricao + " - " + codigo,
-            preco: preco,
+        let body = {        
+            descricao: descricao,
+            preco: getFloatValue(preco),
             estoque: estoque,
         };
 
         const method = "POST";
-        const rota = "produtos";
+        const rota = "produto";
         callApiPost(
             method,
             rota,
             function (data) {
-                console.log("Produto gravado!" + data);
-                // listarProdutosConsulta();
+                console.log("Produto gravado!" + JSON.stringify(data));
+                fecharModal();
+                executaConsulta();
             },
             body
         );
@@ -127,18 +104,19 @@ function confirmarModal() {
 
         let body = {
             descricao: descricao,
-            preco: preco,
+            preco: getFloatValue(preco),
             estoque: estoque,
         };
 
         const method = "PUT";
-        const rota = "produtos/" + codigo;
+        const rota = "produto/" + codigo;
         callApiPost(
             method,
             rota,
             function (data) {
-                console.log("Produto gravado!" + data);
-                listarProdutosConsulta();
+                console.log("Produto alterado!" + JSON.stringify(data));
+                fecharModal();
+                executaConsulta();
             },
             body
         );
@@ -146,45 +124,37 @@ function confirmarModal() {
 }
 
 function excluirProduto(codigo) {
-    alert("ACAO EXCLUIR NAO PROGRAMADA AINDA!");
-    return true;
-
     const method = "DELETE";
-    const rota = "produtos/" + codigo;
-    callApi(method, rota);
+    const rota = "produto/" + codigo;
+    callApi(method, rota, function(data){
+        executaConsulta("consultaproduto");
+    });    
 }
 
 function alterarProduto(codigo) {
-    alert("ACAO ALTERAR NAO PROGRAMADA AINDA!");
-    return true;
-
     const modal = document.querySelector("dialog");
     modal.showModal();
+    modal.style.display = "block";
 
-    // DADOS DE ALTERACAO DO PRODUTO
     const method = "GET";
-    // http://localhost:3000/produtos/?id=2
-    const rota = "produtos/?id=" + codigo;
-    callApi(method, rota, function (aListaProdutos) {
-        console.log(aListaProdutos);
+    const rota = "produto/" + codigo;
+    callApi(method, rota, function (data) {
+        console.log(data);
+        const codigo = data.id;
 
-        aListaProdutos.forEach(function (data, key) {
-            const codigo = data.id;
+        console.log("codigo da alteracao:" + codigo);
 
-            console.log("codigo da alteracao:" + codigo);
+        const descricao = data.descricao;
+        const preco = data.preco;
+        const estoque = data.estoque;
 
-            const descricao = data.descricao;
-            const preco = data.preco;
-            const estoque = data.estoque;
+        document.querySelector("#codigo").value = codigo;
+        document.querySelector("#descricao").value = descricao;
+        document.querySelector("#preco").value = preco;
+        document.querySelector("#estoque").value = estoque;
 
-            document.querySelector("#codigo").value = codigo;
-            document.querySelector("#descricao").value = descricao;
-            document.querySelector("#preco").value = preco;
-            document.querySelector("#estoque").value = estoque;
-
-            // MUDAR A ACAO PARA "ALTERACAO"
-            document.querySelector("#ACAO").value = ACAO_ALTERACAO;
-        });
+        // MUDAR A ACAO PARA "ALTERACAO"
+        document.querySelector("#ACAO").value = ACAO_ALTERACAO;       
     });
 }
 
@@ -217,6 +187,8 @@ function executaConsulta(rota = "consultaproduto") {
         valor2: valor2,
     };
 
+    console.log(body);
+
     callApiPost(
         method,
         rota,
@@ -232,17 +204,50 @@ function executaConsulta(rota = "consultaproduto") {
 }
 
 function parseOperador(operador) {
+    if (operador === "menor_igual") {
+        return "<=";
+    }
+    if (operador === "menor_que") {
+        return "<";
+    }
     if (operador === "igual") {
         return "=";
     }
+    if (operador === "diferente") {
+        return "<>";
+    }
+    if (operador === "maior_que") {
+        return ">";
+    }
+    if (operador === "maior_igual") {
+        return ">=";
+    }
+    if (operador === "preenchido") {
+        return "is not null ";
+    }
+    if (operador === "naopreenchido") {
+        return "is null ";
+    }
+    if (operador === "entre") {
+        return "between";
+    }
     if (operador === "contem") {
         return "ilike";
+    }
+    if (operador === "naocontem") {
+        return "not ilike";
     }
     if (operador === "contido") {
         return "in";
     }
     if (operador === "naocontido") {
         return "not in";
+    }
+    if (operador === "inicia_com") {
+        return "ilike%";
+    }
+    if (operador === "termina_com") {
+        return "%ilike";
     }
 
     return "todos";
