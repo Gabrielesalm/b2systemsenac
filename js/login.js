@@ -116,38 +116,34 @@ function logout() {
 }
 
 function login() {
-    // chama a api de login
     const email = document.querySelector("#login-email").value;
     const senha = document.querySelector("#login-senha").value;
 
-    if (email == "admin@gmail.com" && senha == "Senac.2024") {
-        sessionStorage.setItem(
-            "token_logado",
-            "54a80097f23822cb26b6d5a980968601"
-        );
-        window.location.href = `index.html`;
-    } else {
-        alert("Usuario ou senha invalido!");
-    }
+    const body = {
+        email : email,
+        senha : senha
+    };
 
-    // const body = {
-    //     usuemail : email,
-    //     ususenha : senha
-    // };
+    // function callApi(method, rota, fn = false) {
+    callApiPost("POST", "login", function(data) {
 
-    // callApi("POST", "login", body, function(data) {
-    //     if(data.dadoslogin.login){
-    //         const nome = data.dadoslogin.usunome;
+        // VALIDAR LOGIN 
+        if(data.mensagem != "" && data.mensagem != undefined){
+            alert(data.mensagem);
+            return false;
+        }
 
-    //         // pega os dados de token retornados e seta na sessao do navegador
-    //         sessionStorage.setItem("token_logado", data.dadoslogin.token);
-    //         sessionStorage.setItem("usuario_logado", nome);
+        const nome = data.nome;
+        // SETA O TOKEN
+        sessionStorage.setItem("token_logado", "54a80097f23822cb26b6d5a980968601");
 
-    //         window.location.href = "home.html";
-    //     } else {
-    //         alert("Usuario ou senha invalido!");
-    //     }
-    // });
+        // SETA O USUARIO LOGADO
+        sessionStorage.setItem("usuario_logado", nome);
+
+        // REDIRECIONA PARA A HOME
+        window.location.href = "index.html";
+
+    }, body);
 }
 
 function gravaRegistroLogin() {

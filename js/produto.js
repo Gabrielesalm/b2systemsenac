@@ -43,7 +43,7 @@ function carregaTabelaConsultaProduto(aListaProdutos) {
 // CONSULTA DE PRODUTOS - ALTERAÇÃO/EXCLUSÃO, INSERÇÃO
 function getAcoes(codigo) {
     return (
-        `<div class="acoes">
+        `<div class="acoes text-center">
                 <button class="btn btn-warning" onclick="alterarProduto(` +
         codigo +
         `)">Alterar</button>
@@ -65,6 +65,15 @@ function incluirProduto() {
     const modal = document.querySelector("dialog");
     modal.showModal();
     modal.style.display = "block";
+
+    // limpar o codigo do produto
+    document.querySelector("#codigo").value = "";
+    // seta a ação para INCLUSAO
+    document.querySelector("#ACAO").value = ACAO_INCLUSAO;
+    
+    document.querySelector("#descricao").value = "";
+    document.querySelector("#preco").value = "";
+    document.querySelector("#estoque").value = "";
 }
 
 function confirmarModal() {
