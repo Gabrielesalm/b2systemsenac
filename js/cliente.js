@@ -11,8 +11,8 @@ function carregaTabelaConsulta(aListaDados) {
     tabela.innerHTML = "";
     aListaDados.forEach(function (data, key) {
         const codigo = data.id;
-        const nome   = data.nome;
-        const cpf    = data.cpf;
+        const nome = data.nome;
+        const cpf = data.cpf;
         const cidade = data.cidade;
         const estado = data.estado;
 
@@ -21,19 +21,19 @@ function carregaTabelaConsulta(aListaDados) {
         tabela.innerHTML +=
             `
         <tr>
-            <td>` +
+            <td class="text-center">` +
             codigo +
             `</td>
             <td style="text-align: left;">` +
             nome +
             `</td>
-            <td style="text-align: right;">` +
+            <td class="text-center" style="text-align: right;">` +
             cpf +
             `</td>
-            <td>` +
+            <td class="text-center">` +
             cidade +
             `</td>
-            <td>` +
+            <td class="text-center">` +
             estado +
             `</td>            
             <td>` +
@@ -73,7 +73,7 @@ function incluirCliente() {
     document.querySelector("#codigo").value = "";
     // seta a ação para INCLUSAO
     document.querySelector("#ACAO").value = ACAO_INCLUSAO;
-    
+
     document.querySelector("#descricao").value = "";
     document.querySelector("#preco").value = "";
     document.querySelector("#estoque").value = "";
@@ -82,28 +82,28 @@ function incluirCliente() {
 function confirmarModal() {
     const acao = document.querySelector("#ACAO").value;
 
-    const nome       = document.querySelector("#nome").value;
-    const cpf        = document.querySelector("#cpf").value;    
-    const endereco   = document.querySelector("#endereco").value;
-    const numero     = document.querySelector("#numero").value;
-    const complemento= document.querySelector("#complemento").value;
-    const bairro     = document.querySelector("#bairro").value;
-    const cep        = document.querySelector("#cep").value;
-    const cidade     = document.querySelector("#cidade").value;
-    const estado     = document.querySelector("#estado").value;
+    const nome = document.querySelector("#nome").value;
+    const cpf = document.querySelector("#cpf").value;
+    const endereco = document.querySelector("#endereco").value;
+    const numero = document.querySelector("#numero").value;
+    const complemento = document.querySelector("#complemento").value;
+    const bairro = document.querySelector("#bairro").value;
+    const cep = document.querySelector("#cep").value;
+    const cidade = document.querySelector("#cidade").value;
+    const estado = document.querySelector("#estado").value;
 
     if (acao == ACAO_INCLUSAO) {
-        let body = {        
-            nome       
-            ,cpf        
-            ,endereco   
-            ,numero     
-            ,complemento
-            ,bairro     
-            ,cep        
-            ,cidade     
-            ,estado                 
-        }            
+        let body = {
+            nome,
+            cpf,
+            endereco,
+            numero,
+            complemento,
+            bairro,
+            cep,
+            cidade,
+            estado,
+        };
 
         const method = "POST";
         const rota = "cliente";
@@ -119,18 +119,18 @@ function confirmarModal() {
         );
     } else if (acao == ACAO_ALTERACAO) {
         const codigo = document.querySelector("#codigo").value;
-        let body = { 
-            id:codigo,      
-            nome:nome       
-            ,cpf        
-            ,endereco   
-            ,numero     
-            ,complemento
-            ,bairro     
-            ,cep        
-            ,cidade     
-            ,estado                 
-        }  
+        let body = {
+            id: codigo,
+            nome: nome,
+            cpf,
+            endereco,
+            numero,
+            complemento,
+            bairro,
+            cep,
+            cidade,
+            estado,
+        };
 
         const method = "PUT";
         const rota = "cliente/" + codigo;
@@ -150,9 +150,9 @@ function confirmarModal() {
 function excluirCliente(codigo) {
     const method = "DELETE";
     const rota = "cliente/" + codigo;
-    callApi(method, rota, function(data){
+    callApi(method, rota, function (data) {
         executaConsulta("consultacliente");
-    });    
+    });
 }
 
 function alterarCliente(codigo) {
@@ -165,15 +165,15 @@ function alterarCliente(codigo) {
     callApi(method, rota, function (data) {
         console.log(data);
         const codigo = data.id;
-        const nome   = data.nome;
-        const cpf    = data.cpf;
-        const endereco   = data.endereco;
-        const numero     = data.numero;
-        const complemento= data.complemento;
-        const bairro     = data.bairro;
-        const cep        = data.cep;
-        const cidade     = data.cidade;
-        const estado     = data.estado;
+        const nome = data.nome;
+        const cpf = data.cpf;
+        const endereco = data.endereco;
+        const numero = data.numero;
+        const complemento = data.complemento;
+        const bairro = data.bairro;
+        const cep = data.cep;
+        const cidade = data.cidade;
+        const estado = data.estado;
 
         document.querySelector("#codigo").value = codigo;
 
@@ -188,14 +188,14 @@ function alterarCliente(codigo) {
         document.querySelector("#estado").value = estado;
 
         // MUDAR A ACAO PARA "ALTERACAO"
-        document.querySelector("#ACAO").value = ACAO_ALTERACAO;       
+        document.querySelector("#ACAO").value = ACAO_ALTERACAO;
     });
 }
 
 function executaConsulta(rota = "consultacliente") {
     const operadorConsulta = document.querySelector("#operadorConsulta").value;
-    
-    if((operadorConsulta != "igual") && (operadorConsulta != "todos")){
+
+    if (operadorConsulta != "igual" && operadorConsulta != "todos") {
         alert("Operador nao desenvolvido!");
         return false;
     }
@@ -242,54 +242,4 @@ function executaConsulta(rota = "consultacliente") {
         },
         body
     );
-}
-
-function parseOperador(operador) {
-    if (operador === "menor_igual") {
-        return "<=";
-    }
-    if (operador === "menor_que") {
-        return "<";
-    }
-    if (operador === "igual") {
-        return "=";
-    }
-    if (operador === "diferente") {
-        return "<>";
-    }
-    if (operador === "maior_que") {
-        return ">";
-    }
-    if (operador === "maior_igual") {
-        return ">=";
-    }
-    if (operador === "preenchido") {
-        return "is not null ";
-    }
-    if (operador === "naopreenchido") {
-        return "is null ";
-    }
-    if (operador === "entre") {
-        return "between";
-    }
-    if (operador === "contem") {
-        return "ilike";
-    }
-    if (operador === "naocontem") {
-        return "not ilike";
-    }
-    if (operador === "contido") {
-        return "in";
-    }
-    if (operador === "naocontido") {
-        return "not in";
-    }
-    if (operador === "inicia_com") {
-        return "ilike%";
-    }
-    if (operador === "termina_com") {
-        return "%ilike";
-    }
-
-    return "todos";
 }

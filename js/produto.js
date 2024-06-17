@@ -70,7 +70,7 @@ function incluirProduto() {
     document.querySelector("#codigo").value = "";
     // seta a ação para INCLUSAO
     document.querySelector("#ACAO").value = ACAO_INCLUSAO;
-    
+
     document.querySelector("#descricao").value = "";
     document.querySelector("#preco").value = "";
     document.querySelector("#estoque").value = "";
@@ -84,7 +84,7 @@ function confirmarModal() {
         const preco = document.querySelector("#preco").value;
         const estoque = document.querySelector("#estoque").value;
 
-        let body = {        
+        let body = {
             descricao: descricao,
             preco: getFloatValue(preco),
             estoque: estoque,
@@ -135,9 +135,9 @@ function confirmarModal() {
 function excluirProduto(codigo) {
     const method = "DELETE";
     const rota = "produto/" + codigo;
-    callApi(method, rota, function(data){
+    callApi(method, rota, function (data) {
         executaConsulta("consultaproduto");
-    });    
+    });
 }
 
 function alterarProduto(codigo) {
@@ -163,7 +163,7 @@ function alterarProduto(codigo) {
         document.querySelector("#estoque").value = estoque;
 
         // MUDAR A ACAO PARA "ALTERACAO"
-        document.querySelector("#ACAO").value = ACAO_ALTERACAO;       
+        document.querySelector("#ACAO").value = ACAO_ALTERACAO;
     });
 }
 
@@ -210,54 +210,4 @@ function executaConsulta(rota = "consultaproduto") {
         },
         body
     );
-}
-
-function parseOperador(operador) {
-    if (operador === "menor_igual") {
-        return "<=";
-    }
-    if (operador === "menor_que") {
-        return "<";
-    }
-    if (operador === "igual") {
-        return "=";
-    }
-    if (operador === "diferente") {
-        return "<>";
-    }
-    if (operador === "maior_que") {
-        return ">";
-    }
-    if (operador === "maior_igual") {
-        return ">=";
-    }
-    if (operador === "preenchido") {
-        return "is not null ";
-    }
-    if (operador === "naopreenchido") {
-        return "is null ";
-    }
-    if (operador === "entre") {
-        return "between";
-    }
-    if (operador === "contem") {
-        return "ilike";
-    }
-    if (operador === "naocontem") {
-        return "not ilike";
-    }
-    if (operador === "contido") {
-        return "in";
-    }
-    if (operador === "naocontido") {
-        return "not in";
-    }
-    if (operador === "inicia_com") {
-        return "ilike%";
-    }
-    if (operador === "termina_com") {
-        return "%ilike";
-    }
-
-    return "todos";
 }

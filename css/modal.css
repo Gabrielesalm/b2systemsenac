@@ -35,7 +35,7 @@
     margin: auto;
     padding: 30px;
     border: 1px solid #888;
-    width: 80%;
+    width: 600px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -136,7 +136,6 @@
 
 .btn {
     padding: 6px 11px;
-    /* width: 90px; */
     border: 1px solid #0a2558;
     border-radius: 7px;
     transition: all 0.4s ease-in-out;
@@ -159,31 +158,4 @@
     border: 1px solid #fff;
     background-color: var(--bg-modal);
     color: #fefefe;
-}
-
-.btn-close {
-    text-align: right;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    border-radius: 7px;
-    border: 1px solid var(--bg-modal);
-    transition: all 0.4s ease-in-out;
-}
-
-.btn-close span {
-    color: #000;
-    font-weight: bold;
-}
-
-.btn-close:hover {
-    background-color: var(--bg-modal);
-    border: 1px solid #fff;
-}
-
-.btn-close span:hover {
-    color: #fff;
 }

@@ -21,7 +21,7 @@
     <!-- NOVO BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="css/modal-cadastro.css">
 </head>
 
 <script src="js/login.js" defer async></script>
@@ -100,8 +100,9 @@
                                 </div>
 
                                 <table class="table table-striped table-hover table-bordered caption-top">
-                                    <caption class="table-info text-center bg-primary" style="color:aliceblue;font-size: 22px;">Produtos</caption>
-                                    <thead class="table-primary">                                    
+                                    <caption class="table-info text-center bg-primary"
+                                        style="color:aliceblue;font-size: 22px;">Produtos</caption>
+                                    <thead class="table-primary">
                                         <th>Código</th>
                                         <th>Descrição</th>
                                         <th>Preço</th>
@@ -119,9 +120,8 @@
                                     <div class="modal-content">
                                         <section class="modal-header">
                                             <h1 class="modal-title">Produtos</h1>
-                                            <button onclick="fecharModal()" class="btn-close">
-                                                <!-- <span class="close">&times;</span> -->
-                                                <span class="close">&times;</span>
+                                            <button onclick="fecharModal()" class="btn btn-danger">
+                                                <span class="btn-close-modal">&times;</span>
                                             </button>
                                         </section>
 
@@ -154,7 +154,8 @@
                                         <hr>
 
                                         <div class="modal-footer">
-                                            <button class="btn btn-success" onclick="confirmarModal()">Confirmar</button>
+                                            <button class="btn btn-success"
+                                                onclick="confirmarModal()">Confirmar</button>
                                             <button class="btn btn-danger" onclick="fecharModal()">Fechar</button>
                                         </div>
                                     </div>
@@ -167,6 +168,14 @@
             </div>
         </section>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="js/api.js"></script>
+    <script src="js/produto.js"></script>
+    <script src="js/consulta.js"></script>
+    <script src="js/global.js"></script>
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
@@ -179,16 +188,6 @@
             }
         }
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-
-    <script src="js/api.js"></script>
-    <script src="js/produto.js"></script>
-    <script src="js/consulta.js"></script>
-    <script src="js/global.js"></script>
-
 </body>
 
 </html>

@@ -5,26 +5,25 @@
  * @type string
  */
 function formataNum(num) {
+    if (isNaN(num)) num = "0";
+    else if (num == null) num = "0";
 
-    if (isNaN(num))
-        num = "0";
-    else if (num == null)
-        num = "0";
+    num = num.toString().replace(/\$|\,/g, "");
 
-    num = num.toString().replace(/\$|\,/g, '');
-
-    sign = (num == (num = Math.abs(num)));
+    sign = num == (num = Math.abs(num));
     num = Math.floor(num * 100 + 0.50000000001);
     cents = num % 100;
     num = Math.floor(num / 100).toString();
 
-    if (cents < 10)
-        cents = "0" + cents;
+    if (cents < 10) cents = "0" + cents;
 
     for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
-        num = num.substring(0, num.length - (4 * i + 3)) + '.' + num.substring(num.length - (4 * i + 3));
+        num =
+            num.substring(0, num.length - (4 * i + 3)) +
+            "." +
+            num.substring(num.length - (4 * i + 3));
 
-    return (((sign) ? '' : '-') + num + ',' + cents);
+    return (sign ? "" : "-") + num + "," + cents;
 }
 
 /**
@@ -37,11 +36,11 @@ function converteData(dtData) {
 
     // Converte para modo americano
     if (valor > -1) {
-        data = dtData.split('/');
+        data = dtData.split("/");
         //ano, mes, dia
         dtNovData = data[2] + "-" + data[1] + "-" + data[0];
     } else {
-        data = dtData.split('-');
+        data = dtData.split("-");
         //dia, mes, ano
         dtNovData = data[2] + "/" + data[1] + "/" + data[0];
     }
@@ -50,16 +49,17 @@ function converteData(dtData) {
 }
 
 function atualizaDataHora() {
-    document.querySelector("#datahora").innerHTML = getDataAtual() + " " + getHoraAtual();
+    document.querySelector("#datahora").innerHTML =
+        getDataAtual() + " " + getHoraAtual();
 }
 
 function getDataAtual() {
     var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0");
     var yyyy = today.getFullYear();
 
-    return dd + '/' + mm + '/' + yyyy;
+    return dd + "/" + mm + "/" + yyyy;
 }
 
 function getHoraAtual() {
@@ -83,29 +83,29 @@ function getHoraAtual() {
 }
 
 function formataNum(num) {
-
     if (isNaN(num)) {
         num = "0";
     } else if (num == null) {
         num = "0";
     }
 
-    num = num.toString().replace(/\$|\,/g, '');
+    num = num.toString().replace(/\$|\,/g, "");
 
-
-    sign = (num == (num = Math.abs(num)));
+    sign = num == (num = Math.abs(num));
     num = Math.floor(num * 100 + 0.50000000001);
     cents = num % 100;
     num = Math.floor(num / 100).toString();
 
-    if (cents < 10)
-        cents = "0" + cents;
+    if (cents < 10) cents = "0" + cents;
 
     for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++) {
-        num = num.substring(0, num.length - (4 * i + 3)) + '.' + num.substring(num.length - (4 * i + 3));
+        num =
+            num.substring(0, num.length - (4 * i + 3)) +
+            "." +
+            num.substring(num.length - (4 * i + 3));
     }
 
-    return (((sign) ? '' : '-') + num + ',' + cents);
+    return (sign ? "" : "-") + num + "," + cents;
 }
 
 function getFloatValue(sValor) {
@@ -122,12 +122,12 @@ function getFloatValue(sValor) {
 
     var rVlrParse = parseFloat(sValor);
     if (rVlrParse == NaN || rVlrParse == "NaN") {
-        rVlrParse = 0.00;
+        rVlrParse = 0.0;
     }
 
     return rVlrParse;
 }
 
 function isInteger(s) {
-    return (s.toString().search(/^-?[0-9]+$/) == 0);
+    return s.toString().search(/^-?[0-9]+$/) == 0;
 }

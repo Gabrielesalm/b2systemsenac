@@ -71,3 +71,53 @@ function atualizaCampoSegundoValor() {
         document.querySelector("#campoValor2").style.display = "block";
     }
 }
+
+function parseOperador(operador) {
+    if (operador === "menor_igual") {
+        return "<=";
+    }
+    if (operador === "menor_que") {
+        return "<";
+    }
+    if (operador === "igual") {
+        return "=";
+    }
+    if (operador === "diferente") {
+        return "<>";
+    }
+    if (operador === "maior_que") {
+        return ">";
+    }
+    if (operador === "maior_igual") {
+        return ">=";
+    }
+    if (operador === "preenchido") {
+        return "is not null ";
+    }
+    if (operador === "naopreenchido") {
+        return "is null ";
+    }
+    if (operador === "entre") {
+        return "between";
+    }
+    if (operador === "contem") {
+        return "ilike";
+    }
+    if (operador === "naocontem") {
+        return "not ilike";
+    }
+    if (operador === "contido") {
+        return "in";
+    }
+    if (operador === "naocontido") {
+        return "not in";
+    }
+    if (operador === "inicia_com") {
+        return "ilike%";
+    }
+    if (operador === "termina_com") {
+        return "%ilike";
+    }
+
+    return "todos";
+}
